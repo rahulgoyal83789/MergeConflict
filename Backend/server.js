@@ -4,6 +4,7 @@ import {Server} from 'socket.io';
 import {YSocketIO} from 'y-socket.io/dist/server';
 import path from 'path';
 import {fileURLToPath} from 'url';
+import { LeveldbPersistence } from 'y-leveldb'
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -18,7 +19,12 @@ const io = new Server(httpServer, {
     }
 });
 
-const ySocketIO = new YSocketIO(io);
+const persistence = new LeveldbPersistence('./storage')
+
+const ySocketIO = new YSocketIO(io, {
+    gcEnabled: true,
+    persistence: persistence 
+})
 ySocketIO.initialize();
 
 

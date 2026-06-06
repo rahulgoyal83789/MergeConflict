@@ -7,6 +7,7 @@ import {SocketIOProvider} from "y-socket.io"
 
 function App() {
   const editorRef = useRef(null)
+  const [isEditorReady, setIsEditorReady] = useState(false)
   const [username, setUsername] = useState(()=>{
     return new URLSearchParams(window.location.search).get("username") || ""
   })
@@ -15,13 +16,15 @@ function App() {
   const ydoc = useMemo(() => new Y.Doc(), [])
   const yText = useMemo(() => ydoc.getText("monaco"), [ydoc])
 
-  const handleMount = (editor)=>{
+  const handleMount = (editor, monaco)=>{
     editorRef.current = editor
+    editor.getModel().setEOL(monaco.editor.EndOfLineSequence.LF)
     new MonacoBinding(
         yText, 
         editorRef.current.getModel(), 
         new Set([editorRef.current])
     )
+    setIsEditorReady(true)
   }
   const handleJoin = (e) => {
     e.preventDefault()
@@ -93,6 +96,13 @@ function App() {
                 defaultValue="// Write your code here"
                 theme="vs-dark"
                 onMount={handleMount}
+                options={{
+                  eol: 'lf',                    
+                  autoDetectHighContrast: false  
+                }}
+                loading={
+                  <p className="text-white animate-pulse">Loading editor...</p>
+                }
             />
         </section>
     </main>
