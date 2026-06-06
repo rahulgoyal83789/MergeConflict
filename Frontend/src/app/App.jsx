@@ -32,7 +32,8 @@ function App() {
 
   useEffect(() => {
     if(username){
-      const provider = new SocketIOProvider("http://localhost:3000", "monaco-room", ydoc,{autoConnect: true})
+      const socketUrl = import.meta.env.VITE_SOCKET_URL || window.location.origin
+      const provider = new SocketIOProvider(socketUrl, "monaco-room", ydoc, {autoConnect: true})
       //Connects server and user to the same room, so they can sync data
 
       provider.awareness.setLocalStateField("user", {username})
