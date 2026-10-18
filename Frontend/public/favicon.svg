@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <rect x="0" y="0" width="100" height="100" rx="22" fill="#18181b"/>
+
+  <!-- incoming trunk -->
+  <line x1="18" y1="18" x2="18" y2="82" stroke="#555555" stroke-width="7" stroke-linecap="round"/>
+
+  <!-- branch A — green fork top -->
+  <path d="M 18 22 C 18 22 18 36 34 46" fill="none" stroke="#22c55e" stroke-width="7" stroke-linecap="round"/>
+
+  <!-- branch B — amber fork bottom -->
+  <path d="M 18 78 C 18 78 18 64 34 54" fill="none" stroke="#f59e0b" stroke-width="7" stroke-linecap="round"/>
+
+  <!-- merge lines converging -->
+  <path d="M 34 46 C 46 50 46 50 56 50" fill="none" stroke="#22c55e" stroke-width="7" stroke-linecap="round"/>
+  <path d="M 34 54 C 46 50 46 50 56 50" fill="none" stroke="#f59e0b" stroke-width="7" stroke-linecap="round"/>
+
+  <!-- merged output -->
+  <line x1="56" y1="50" x2="84" y2="50" stroke="#a78bfa" stroke-width="7" stroke-linecap="round"/>
+
+  <!-- commit dots -->
+  <circle cx="18" cy="22" r="5" fill="#22c55e"/>
+  <circle cx="18" cy="78" r="5" fill="#f59e0b"/>
+  <circle cx="84" cy="50" r="5" fill="#a78bfa"/>
+
+  <!-- lightning bolt at conflict point -->
+  <polygon points="62,30 50,53 58,53 54,72 70,46 60,46" fill="#ffffff"/>
+</svg>
